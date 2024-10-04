@@ -88,6 +88,15 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=trustcrowdb
 NODE_ENV=development
+
+# .env.test file
+
+PORT=3000
+DB_USER=trustcrowuser
+DB_PASSWORD=trustcrowpass
+DB_HOST=localhost
+DB_PORT=5432
+NODE_ENV=test
 DB_NAME_TEST=trustcrowdbtest
 ```
 
