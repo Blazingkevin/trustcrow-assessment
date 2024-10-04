@@ -1,16 +1,22 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('categories')
 export class Category {
-    @PrimaryGeneratedColumn('uuid')
-    id?: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
-    label?: string;
+    label: string;
 
     @ManyToOne(() => Category, (category) => category.children, { onDelete: 'CASCADE' })
-    parent?: Category;
+    parent: Category;
 
     @OneToMany(() => Category, (category) => category.parent)
-    children?: Category[];
+    children: Category[];
+
+    @CreateDateColumn()
+    createdAt?: Date
+
+    @UpdateDateColumn()
+    updatedAt?: Date
 }

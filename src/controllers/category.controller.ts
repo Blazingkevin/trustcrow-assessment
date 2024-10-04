@@ -14,7 +14,7 @@ export async function createCategory(req: Request, res: Response) {
 export async function deleteCategory(req: Request, res: Response) {
   const { id } = req.params;
   try {
-    await removeCategory(String(id));
+    await removeCategory(Number(id));
     res.status(200).json({ message: 'Category deleted', id });
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete category' });
@@ -24,7 +24,7 @@ export async function deleteCategory(req: Request, res: Response) {
 export async function getCategorySubtree(req: Request, res: Response) {
   const { id } = req.params;
   try {
-    const subtree = await fetchSubtree(String(id));
+    const subtree = await fetchSubtree(Number(id));
     res.status(200).json(subtree);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch category subtree' });
@@ -35,7 +35,7 @@ export async function updateCategoryParent(req: Request, res: Response) {
   const { id } = req.params;
   const { newParentId } = req.body;
   try {
-    const category = await moveSubtree(String(id), newParentId);
+    const category = await moveSubtree(Number(id), newParentId);
     res.status(200).json(category);
   } catch (error) {
     res.status(500).json({ message: 'Failed to move category' });

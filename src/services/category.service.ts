@@ -4,7 +4,7 @@ import { Category } from '../entities/category.entity';
 
 const categoryRepository = AppDataSource.getRepository(Category);
 
-export async function addCategory(label: string, parentId?: string): Promise<Category> {
+export async function addCategory(label: string, parentId?: number): Promise<Category> {
     const category = new Category();
     category.label = label;
 
@@ -18,18 +18,18 @@ export async function addCategory(label: string, parentId?: string): Promise<Cat
     return await categoryRepository.save(category);
 }
 
-export async function removeCategory(id: string): Promise<void> {
+export async function removeCategory(id: number): Promise<void> {
     await categoryRepository.delete(id);
 }
 
-export async function fetchSubtree(id: string): Promise<Category[]> {
+export async function fetchSubtree(id: number): Promise<Category[]> {
     return await categoryRepository.find({
         where: { id },
         relations: ['children'],
     });
 }
 
-export async function moveSubtree(id: string, newParentId: string): Promise<Category> {
+export async function moveSubtree(id: number, newParentId: number): Promise<Category> {
     const category = await categoryRepository.findOneBy({ id });
     const newParent = await categoryRepository.findOneBy({ id: newParentId });
 
