@@ -205,7 +205,7 @@ All uncaught errors are caught by a centralized error handler that provides a st
 Here’s a brief overview of the project's directory structure:
 
 ```
-category-management-api/
+trustcrow-assessment/
 ├── src/
 │   ├── config/              # Database and Swagger configuration
 │   ├── controllers/         # Route controllers
