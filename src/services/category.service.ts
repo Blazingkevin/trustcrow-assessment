@@ -1,6 +1,7 @@
 //@ts-ignore
 import { AppDataSource } from '../../ormconfig';
 import { Category } from '../entities/category.entity';
+import { NotFoundError } from '../errors/NotFoudError';
 
 const categoryRepository = AppDataSource.getRepository(Category);
 
@@ -33,10 +34,19 @@ export async function moveSubtree(id: number, newParentId: number): Promise<Cate
     const category = await categoryRepository.findOneBy({ id });
     const newParent = await categoryRepository.findOneBy({ id: newParentId });
 
-    if (!category || !newParent) {
-        throw new Error('Category or new parent not found');
+
+    if (!category) {
+        throw new NotFoundError(`Category with ID ${id} not found`);
+    }
+
+    if (!newParent) {
+        throw new NotFoundError(`Parent category with ID ${newParentId} not found`);
     }
 
     category.parent = newParent;
     return await categoryRepository.save(category);
+}
+
+export async function getCategoryById(id: number): Promise<Category | null> {
+    return await categoryRepository.findOneBy({ id });
 }
