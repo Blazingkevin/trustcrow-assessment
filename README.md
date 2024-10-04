@@ -45,7 +45,7 @@ Ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/trustcrow-assessment.git
+git clone https://github.com/Blazingkevin/trustcrow-assessment.git
 cd trustcrow-assessment
 ```
 
@@ -65,7 +65,7 @@ yarn install
 
 ### 3. Set Up PostgreSQL Database
 
-Create a PostgreSQL database for your project. For instance, you can create a database named `trustcrowdb`(for the main application) and `trustcrowdbtest`(for test).
+Create a PostgreSQL database for the project. For instance, you can create a database named `trustcrowdb`(for the main application) and `trustcrowdbtest`(for test).
 
 ```sql
 CREATE DATABASE trustcrowdb;
